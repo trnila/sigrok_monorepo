@@ -53,6 +53,7 @@
 #ifdef ENABLE_DECODE
 #include <pv/data/decodesignal.hpp>
 #endif
+#include <pv/globalsettings.hpp>
 
 #include <libsigrokcxx/libsigrokcxx.hpp>
 
@@ -84,6 +85,7 @@ namespace toolbars {
 const uint64_t MainBar::MinSampleCount = 100ULL;
 const uint64_t MainBar::MaxSampleCount = 1000000000000ULL;
 const uint64_t MainBar::DefaultSampleCount = 1000000;
+const uint64_t MainBar::DefaultSampleRate = 1000000UL;
 
 const char *MainBar::SettingOpenDirectory = "MainWindow/OpenDirectory";
 const char *MainBar::SettingSaveDirectory = "MainWindow/SaveDirectory";
@@ -370,6 +372,7 @@ void MainBar::update_sample_rate_selector()
 
 	assert(!updating_sample_rate_);
 	updating_sample_rate_ = true;
+	uint64_t sample_rate = sample_rate_.value();
 
 	const shared_ptr<sigrok::Device> sr_dev = device->device();
 
@@ -432,6 +435,18 @@ void MainBar::update_sample_rate_selector()
 		sample_rate_.show_list(elements, num_elements);
 		g_variant_unref(gvar_list);
 	}
+
+	if (sample_rate == 0)
+	{
+		GlobalSettings settings;
+
+		auto rate = settings.value(GlobalSettings::Key_Cap_SampleRate,
+			QVariant::fromValue(DefaultSampleRate)).toInt();
+		sample_rate_.set_value(rate);
+		sr_dev->config_set(ConfigKey::SAMPLERATE,
+			Glib::Variant<guint64>::create(sample_rate_.value()));
+	}
+
 	updating_sample_rate_ = false;
 
 	update_sample_rate_selector_value();
@@ -461,6 +476,8 @@ void MainBar::update_sample_rate_selector_value()
 
 void MainBar::update_sample_count_selector()
 {
+	GlobalSettings settings;
+
 	if (updating_sample_count_)
 		return;
 
@@ -485,7 +502,8 @@ void MainBar::update_sample_count_selector()
 	bool default_count_set = false;
 
 	if (sample_count == 0) {
-		sample_count = DefaultSampleCount;
+		sample_count = settings.value(GlobalSettings::Key_Cap_SampleCount,
+			QVariant::fromValue(DefaultSampleCount)).toInt();
 		default_count_set = true;
 	}
 
@@ -509,7 +527,8 @@ void MainBar::update_sample_count_selector()
 		auto gvar = sr_dev->config_get(ConfigKey::LIMIT_SAMPLES);
 		sample_count = g_variant_get_uint64(gvar.gobj());
 		if (sample_count == 0) {
-			sample_count = DefaultSampleCount;
+			sample_count = settings.value(GlobalSettings::Key_Cap_SampleCount,
+				QVariant::fromValue(DefaultSampleCount)).toInt();
 			default_count_set = true;
 		}
 		sample_count = min(max(sample_count, MinSampleCount),
@@ -572,6 +591,7 @@ void MainBar::update_device_config_widgets()
 void MainBar::commit_sample_rate()
 {
 	uint64_t sample_rate = 0;
+	GlobalSettings settings;
 
 	const shared_ptr<devices::Device> device = device_selector_.selected_device();
 	if (!device)
@@ -585,6 +605,7 @@ void MainBar::commit_sample_rate()
 		sr_dev->config_set(ConfigKey::SAMPLERATE,
 			Glib::Variant<guint64>::create(sample_rate));
 		update_sample_rate_selector();
+		settings.setValue(GlobalSettings::Key_Cap_SampleRate, (qulonglong)sample_rate);
 	} catch (Error& error) {
 		qDebug() << tr("Failed to configure samplerate:") << error.what();
 		return;
@@ -599,6 +620,7 @@ void MainBar::commit_sample_rate()
 void MainBar::commit_sample_count()
 {
 	uint64_t sample_count = 0;
+	GlobalSettings settings;
 
 	const shared_ptr<devices::Device> device = device_selector_.selected_device();
 	if (!device)
@@ -612,6 +634,7 @@ void MainBar::commit_sample_count()
 			sr_dev->config_set(ConfigKey::LIMIT_SAMPLES,
 				Glib::Variant<guint64>::create(sample_count));
 			update_sample_count_selector();
+			settings.setValue(GlobalSettings::Key_Cap_SampleCount, (qulonglong)sample_count);
 		} catch (Error& error) {
 			qDebug() << tr("Failed to configure sample count:") << error.what();
 			return;

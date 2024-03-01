@@ -78,6 +78,8 @@ const QString GlobalSettings::Key_Dec_ExportFormat = "Dec_ExportFormat";
 const QString GlobalSettings::Key_Dec_AlwaysShowAllRows = "Dec_AlwaysShowAllRows";
 const QString GlobalSettings::Key_Log_BufferSize = "Log_BufferSize";
 const QString GlobalSettings::Key_Log_NotifyOfStacktrace = "Log_NotifyOfStacktrace";
+const QString GlobalSettings::Key_Cap_SampleRate = "Cap_SampleRate";
+const QString GlobalSettings::Key_Cap_SampleCount = "Cap_SampleCount";
 
 vector<GlobalSettingsInterface*> GlobalSettings::callbacks_;
 bool GlobalSettings::tracking_ = false;

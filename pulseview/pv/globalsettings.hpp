@@ -83,6 +83,8 @@ public:
 	static const QString Key_Dec_AlwaysShowAllRows;
 	static const QString Key_Log_BufferSize;
 	static const QString Key_Log_NotifyOfStacktrace;
+	static const QString Key_Cap_SampleRate;
+	static const QString Key_Cap_SampleCount;
 
 	enum ConvThrDispMode {
 		ConvThrDispMode_None = 0,

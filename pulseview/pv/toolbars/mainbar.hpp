@@ -71,6 +71,7 @@ private:
 	static const uint64_t MinSampleCount;
 	static const uint64_t MaxSampleCount;
 	static const uint64_t DefaultSampleCount;
+	static const uint64_t DefaultSampleRate;
 
 	/**
 	 * Name of the setting used to remember the directory
