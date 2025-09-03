@@ -21,7 +21,7 @@
 
 #include "subwindow.hpp"
 
-#include <libsigrokdecode/libsigrokdecode.h>
+#include "libsigrokdecode/libsigrokdecode.h"
 
 #define DECODERS_HAVE_TAGS \
 	((SRD_PACKAGE_VERSION_MAJOR > 0) || \

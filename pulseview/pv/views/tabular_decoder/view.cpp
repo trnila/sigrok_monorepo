@@ -30,7 +30,7 @@
 #include <QToolBar>
 #include <QVBoxLayout>
 
-#include <libsigrokdecode/libsigrokdecode.h>
+#include "libsigrokdecode/libsigrokdecode.h"
 
 #include "view.hpp"
 

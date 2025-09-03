@@ -22,7 +22,7 @@
 
 #ifdef HAVE_SRD
 /* First, so we avoid a _POSIX_C_SOURCE warning. */
-#include <libsigrokdecode/libsigrokdecode.h>
+#include "libsigrokdecode/libsigrokdecode.h"
 #endif
 #include <libsigrok/libsigrok.h>
 

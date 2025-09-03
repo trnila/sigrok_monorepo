@@ -1,0 +1,41 @@
+bazel_dep(name = "glib", version = "2.82.2.bcr.5")
+bazel_dep(name = "libusb", version = "1.0.28")
+bazel_dep(name = "libzip", version = "1.11.4.bcr.1")
+bazel_dep(name = "rules_python", version = "1.6.0")
+bazel_dep(name = "rules_qt", version = "1.6.0")
+
+git_override(
+    module_name = "rules_qt",
+    remote = "https://github.com/Vertexwahn/rules_qt6",
+    commit = "9f8aad6f5363cc77bc557fb9cfcc4bc854ec3439",
+)
+
+python = use_extension("@rules_python//python/extensions:python.bzl", "python")
+python.toolchain(
+    python_version = "3.13",
+)
+
+pip = use_extension("@rules_python//python/extensions:pip.bzl", "pip")
+#pip.parse(
+#    hub_name = "pypi",
+#    python_version = "3.13",
+#    requirements_lock = "//:requirements_lock.txt",
+#)
+
+#use_repo(pip, "pypi")
+
+http_archive = use_repo_rule("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+
+http_archive(
+    name = "glibmm",
+    build_file = "//:glibmm.BUILD",
+    strip_prefix = "glibmm-2.85.0",
+    url = "https://gitlab.gnome.org/GNOME/glibmm/-/archive/2.85.0/glibmm-2.85.0.tar.gz",
+)
+
+http_archive(
+    name = "libsigcplusplus",
+    build_file = "//:libsigcplusplus.BUILD",
+    strip_prefix = "libsigc++-3.6.0",
+    url = "https://github.com/libsigcplusplus/libsigcplusplus/releases/download/3.6.0/libsigc++-3.6.0.tar.xz",
+)

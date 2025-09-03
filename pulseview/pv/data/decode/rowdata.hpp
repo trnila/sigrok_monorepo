@@ -27,7 +27,7 @@
 #include <QHash>
 #include <QString>
 
-#include <libsigrokdecode/libsigrokdecode.h>
+#include "libsigrokdecode/libsigrokdecode.h"
 
 #include <pv/data/decode/annotation.hpp>
 

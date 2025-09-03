@@ -29,7 +29,7 @@
 #include <QDebug>
 #include <QSettings>
 
-#include <libsigrokdecode/libsigrokdecode.h>
+#include "libsigrokdecode/libsigrokdecode.h"
 
 #include <pv/data/decode/decoder.hpp>
 #include <pv/data/decode/row.hpp>

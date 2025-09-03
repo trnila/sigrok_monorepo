@@ -23,7 +23,7 @@
 #include "decoder.hpp"
 #include "row.hpp"
 
-#include <libsigrokdecode/libsigrokdecode.h>
+#include "libsigrokdecode/libsigrokdecode.h"
 
 namespace pv {
 namespace data {

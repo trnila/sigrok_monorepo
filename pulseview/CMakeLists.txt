@@ -262,7 +262,7 @@ if(ENABLE_DECODE)
 		list(APPEND CMAKE_REQUIRED_LINK_OPTIONS "-L${LPATH}")
 	endforeach ()
 	check_c_source_compiles("
-	#include <libsigrokdecode/libsigrokdecode.h>
+	#include "libsigrokdecode/libsigrokdecode.h"
 	int main(int argc, char *argv[])
 	{
 		(void)argc;

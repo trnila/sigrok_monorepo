@@ -32,7 +32,7 @@
 #include "pv/session.hpp"
 #include "pv/subwindows/decoder_selector/subwindow.hpp"
 
-#include <libsigrokdecode/libsigrokdecode.h>
+#include "libsigrokdecode/libsigrokdecode.h"
 #include "subwindow.hpp"  // Required only for lupdate since above include isn't recognized
 
 #define DECODERS_HAVE_TAGS \

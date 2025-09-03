@@ -52,7 +52,7 @@
 #include <libsigrokcxx/libsigrokcxx.hpp>
 
 #ifdef ENABLE_DECODE
-#include <libsigrokdecode/libsigrokdecode.h>
+#include "libsigrokdecode/libsigrokdecode.h"
 #endif
 
 using pv::widgets::ColorButton;

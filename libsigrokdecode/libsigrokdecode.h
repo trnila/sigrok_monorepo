@@ -42,7 +42,7 @@ struct srd_session;
  * The correct way to get/use the libsigrokdecode API functions is:
  *
  * @code{.c}
- *   #include <libsigrokdecode/libsigrokdecode.h>
+ *   #include "libsigrokdecode/libsigrokdecode.h"
  * @endcode
  */
 

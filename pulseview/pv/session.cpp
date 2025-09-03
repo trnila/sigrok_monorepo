@@ -61,7 +61,7 @@
 #endif
 
 #ifdef ENABLE_DECODE
-#include <libsigrokdecode/libsigrokdecode.h>
+#include "libsigrokdecode/libsigrokdecode.h"
 #include "data/decodesignal.hpp"
 #endif
 

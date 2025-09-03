@@ -19,7 +19,7 @@
 
 #include <cassert>
 
-#include <libsigrokdecode/libsigrokdecode.h>
+#include "libsigrokdecode/libsigrokdecode.h"
 
 #include "decodermenu.hpp"
 

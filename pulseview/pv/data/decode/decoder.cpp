@@ -22,7 +22,7 @@
 #include <QDebug>
 
 #include <libsigrokcxx/libsigrokcxx.hpp>
-#include <libsigrokdecode/libsigrokdecode.h>
+#include "libsigrokdecode/libsigrokdecode.h"
 
 #include "decoder.hpp"
 
