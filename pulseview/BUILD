@@ -12,7 +12,7 @@ cc_binary(
         ],
     ),
     copts = [
-        "-I/usr/include/glibmm-2.4/",
+        #"-I/usr/include/glibmm-2.4/",
     ],
     includes = [
         ".",
@@ -21,7 +21,7 @@ cc_binary(
     deps = [
         "//libsigrok:cxx",
         "//libsigrokdecode",
-        #  "@glibmm",
+        "@glibmm",
         "@libsigcplusplus",
         "@glib//glib",
         "@glib//gobject",
