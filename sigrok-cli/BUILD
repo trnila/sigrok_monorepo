@@ -7,6 +7,7 @@ cc_binary(
     includes = ["."],
     deps = [
         "//libsigrok",
+        "//libsigrokdecode",
         "@glib//glib",
     ],
 )

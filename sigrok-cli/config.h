@@ -4,7 +4,7 @@
 #undef CONF_SRD_VERSION
 
 /* Whether libsigrokdecode is available. */
-#undef HAVE_SRD
+#define HAVE_SRD
 
 /* Define to 1 if you have the `srd_session_send_eof' function. */
 #undef HAVE_SRD_SESSION_SEND_EOF
