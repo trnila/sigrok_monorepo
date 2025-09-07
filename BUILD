@@ -1,0 +1,1 @@
+exports_files(["ftdi_version_i.h"])

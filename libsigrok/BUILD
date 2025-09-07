@@ -31,6 +31,7 @@ cc_library(
         "@glib//glib",
         "@libusb",
         "@libzip",
+        #"@libftdi",
     ],
 )
 

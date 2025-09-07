@@ -3,6 +3,7 @@ bazel_dep(name = "libusb", version = "1.0.28")
 bazel_dep(name = "libzip", version = "1.11.4.bcr.1")
 bazel_dep(name = "rules_python", version = "1.6.0")
 bazel_dep(name = "rules_qt", version = "1.6.0")
+bazel_dep(name = "rules_foreign_cc", version = "0.15.0")
 
 git_override(
     module_name = "rules_qt",
@@ -38,4 +39,18 @@ http_archive(
     build_file = "//:libsigcplusplus.BUILD",
     strip_prefix = "libsigc++-3.6.0",
     url = "https://github.com/libsigcplusplus/libsigcplusplus/releases/download/3.6.0/libsigc++-3.6.0.tar.xz",
+)
+
+http_archive(
+    name = "libftdi",
+    build_file = "//:libftdi.BUILD",
+    strip_prefix = "libftdi1-1.5",
+    url = "https://www.intra2net.com/en/developer/libftdi/download/libftdi1-1.5.tar.bz2",
+)
+
+http_archive(
+    name = "confuse",
+    build_file = "//:confuse.BUILD",
+    strip_prefix = "confuse-3.3",
+    url = "https://github.com/libconfuse/libconfuse/releases/download/v3.3/confuse-3.3.tar.gz"
 )
